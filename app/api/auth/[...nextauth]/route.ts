@@ -4,8 +4,6 @@ import GoogleProvider from "next-auth/providers/google";
 import User from "@models/user";
 import { connectToDB } from "@utils/db";
 
-console.log("process.env", process.env);
-
 const authOptions: NextAuthOptions = {
   providers: [
     GoogleProvider({
