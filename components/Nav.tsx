@@ -5,8 +5,20 @@ import { useState, useEffect } from "react";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 
 function Nav() {
-  const isUserLoggedIn: boolean = false;
-  function signOut() {}
+  const isUserLoggedIn: boolean = true;
+  const [providers, setProviders] = useState<any>(null);
+
+  useEffect(() => {
+    const fetchProviders = async () => {
+      const response = await getProviders();
+      setProviders(response);
+    };
+
+    fetchProviders();
+  }, []);
+
+  function handleSignOut() {}
+
   return (
     <nav className="flex-between w-full mb-16 pt-3">
       <Link href="/" className="flex gap-2 flex-center">
@@ -27,7 +39,11 @@ function Nav() {
             <Link href="/create-prompt" className="black_btn">
               Create Post
             </Link>
-            <button type="button" onClick={signOut} className="outline_btn">
+            <button
+              type="button"
+              onClick={handleSignOut}
+              className="outline_btn"
+            >
               Sign Out
             </button>
             <Link href="/profile">
@@ -41,7 +57,19 @@ function Nav() {
             </Link>
           </div>
         ) : (
-          <></>
+          <>
+            {providers &&
+              Object.values(providers).map((provider: any) => (
+                <button
+                  type="button"
+                  onClick={() => signIn(provider.id)}
+                  key={provider.name}
+                  className="black_btn"
+                >
+                  Sign In
+                </button>
+              ))}
+          </>
         )}
       </div>
     </nav>
