@@ -49,7 +49,8 @@ function Nav() {
             </button>
             <Link href="/profile">
               <Image
-                src="/assets/images/logo.svg"
+                loader={({ src }) => src}
+                src={session?.user?.image || "/assets/images/logo.svg"}
                 alt="profile"
                 width={37}
                 height={37}
@@ -79,7 +80,8 @@ function Nav() {
         {session?.user ? (
           <div className="flex">
             <Image
-              src="/assets/images/logo.svg"
+              loader={({ src }) => src}
+              src={session?.user?.image || "/assets/images/logo.svg"}
               alt="profile"
               width={37}
               height={37}
