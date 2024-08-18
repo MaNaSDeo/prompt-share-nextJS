@@ -24,9 +24,11 @@ function Profile() {
     }
   }, [session]);
 
-  const handleEdit = () => {};
+  const handleEdit = (post: any) => {
+    router.push(`/update-prompt?id=${post._id}`);
+  };
 
-  const handleDelete = () => {};
+  const handleDelete = (post: any) => {};
 
   return (
     <ProfilePage

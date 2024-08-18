@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 interface iForm {
-  type: "Create";
+  type: "Create" | "Edit";
   post: any;
   setPost: any;
   submitting: any;
